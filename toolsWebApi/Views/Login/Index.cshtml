@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "";
+}
+<script src="https://kit.fontawesome.com/49cb7f7bd8.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+
+<link rel="stylesheet" type="text/css" href="~/css/login.css" />
+<link rel="stylesheet" type="text/css" href="~/Scripts/toastr/toastr.css"/>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="~/Scripts/toastr/toastr.js"></script>
+
+
+
+
+
+   <div class="d-flex justify-content-center min-vh-100 align-items-center main">
+      
+       <form action="/Login/login" method="post">
+  <div class="mb-3">
+       <h1 class="d-block">Login</h1>
+    <label for="inputEmail" class="form-label text-light">Email address</label>
+    <input type="email" name="emailId" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="inputPassword" class="form-label text-light">Password</label>
+    <input type="password" name="pwd" class="form-control" id="inputPassword">
+    <div class="text-danger" id="password-validation">Email id or Password incorrect please try again</div>
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label text-light" for="exampleCheck1">Remember me</label>
+    <a href="/Login/Register" class="text-white float-end">Register here</a>
+  </div>
+  <div class="col-md-12 d-flex text-center">
+  <button type="button" id="sign-in-btn" class="btn btn-outline-success w-75 flex-grow-1">Sign in</button>
+   <a href="#" class="align-content-end d-block  flex-grow-1"><i class="fa-brands fa-google fa-g" style="font-size:30px;color:#D61C4E"></i></a>
+  </div>
+</form>
+   </div>
+
+   <script src="~/Scripts/login/login.js"></script>
+
+
+
+   
