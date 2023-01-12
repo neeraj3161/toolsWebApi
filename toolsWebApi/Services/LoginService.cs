@@ -20,7 +20,7 @@ namespace toolsWebApi.Services
             var builder = WebApplication.CreateBuilder();
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-            string query = $"SELECT * from scrape.users where email = '{email}' AND password = '{pwd}';";
+            string query = $"SELECT * FROM scrape.users WHERE email = '{email}' AND password = '{pwd}';";
 
             bool isUserPresent = false;
 
