@@ -2,15 +2,22 @@
 using System.Configuration;
 using Npgsql;
 using toolsWebApi.Models;
+using NHibernate;
+using ISession = NHibernate.ISession;
+using toolsWebApi.Entity;
 
 namespace toolsWebApi.Services
 {
+
+
     public class LoginService : IloginService
+
+
     {
         public bool UserLogin(string emailId, string pwd)
         {
 
-            var isValidUser = GetUserInfo( emailId,  pwd);
+            var isValidUser = GetUserInfo(emailId, pwd);
 
             return isValidUser;
         }
@@ -50,6 +57,9 @@ namespace toolsWebApi.Services
                                         userData.Email = (string)dr["email"];
                                         userData.Created = (DateTime)dr["created"];
 
+
+
+
                                     }
                                 }
                             }
@@ -57,22 +67,25 @@ namespace toolsWebApi.Services
                         tran.Commit();
 
                     }
-                    catch (Exception ex) {
+                    catch (Exception ex)
+                    {
                         try
                         {
                             tran.Rollback();
                         }
                         catch (Exception)
                         { }
-                        }
-                
+                    }
+
                 }
             }
-            finally { 
-                if(connection!=null)
+            finally
+            {
+                if (connection != null)
                     connection.Close();
             }
             return isUserPresent;
         }
+
     }
 }

@@ -3,11 +3,47 @@
     
 }
 
-@if(Model!=null)
-{
-        <h1>@Model.Id</h1>
-    <h1>@Model.Name</h1>
-    <h1>@Model.Surname</h1>
-    <h1>@Model.Email</h1>
-    <h1>@Model.Created</h1>
-}
+   
+<script src="https://kit.fontawesome.com/49cb7f7bd8.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+
+@*<link rel="stylesheet" type="text/css" href="~/css/login.css" />*@
+<link rel="stylesheet" type="text/css" href="~/Scripts/toastr/toastr.css"/>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="~/Scripts/toastr/toastr.js"></script>
+<form>
+   <div class="d-flex">
+  <div class="mb-3 flex-grow-1">
+    <label for="fname" class="form-label">First Name</label>
+    <input type="text" class="form-control" id="fname">
+    <label for="phone" class="form-label">Phone Number</label>
+    <input type="number" class="form-control" id="fname">
+     
+    
+  </div>
+
+  <div class="mb-3 flex-grow-1">
+    <label for="lname" class="form-label">Last Name</label>
+    <input type="text" class="form-control" id="lname">
+     <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email">
+    
+  </div>
+
+   <div class="mb-3 flex-grow-1">
+    <label for="pwd" class="form-label">Password</label>
+    <input type="password" class="form-control" id="pwd">
+     <label for="cfnpwd" class="form-label">Confirm Password</label>
+    <input type="password" class="form-control" id="cfnpwd">
+    
+  </div>
+ 
+    
+  </div>
+
+    @*<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>*@
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
