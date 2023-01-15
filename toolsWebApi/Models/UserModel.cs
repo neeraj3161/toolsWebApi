@@ -1,6 +1,8 @@
-﻿namespace toolsWebApi.Models
+﻿using toolsWebApi.IServices.hibernateConfig;
+
+namespace toolsWebApi.Models
 {
-    public class UserModel
+    public class UserModel:IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

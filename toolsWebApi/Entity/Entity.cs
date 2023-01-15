@@ -1,6 +1,7 @@
 ﻿namespace toolsWebApi.Entity
 {
-    public abstract class Entity
+    public interface Entity
     {
+        int Id { get;}
     }
 }

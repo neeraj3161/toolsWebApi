@@ -14,36 +14,38 @@
 
 <script src="~/Scripts/toastr/toastr.js"></script>
 <form>
-   <div class="d-flex">
-  <div class="mb-3 flex-grow-1">
+   <div class="d-flex flex-wrap gx-5">
+  <div class="mb-3 w-50">
     <label for="fname" class="form-label">First Name</label>
-    <input type="text" class="form-control" id="fname">
+    <input type="text" class="form-control w-50" id="fname">
     <label for="phone" class="form-label">Phone Number</label>
-    <input type="number" class="form-control" id="fname">
-     
-    
+    <input type="number" class="form-control w-50" id="fname"> 
   </div>
 
-  <div class="mb-3 flex-grow-1">
+  <div class="mb-3 w-50">
     <label for="lname" class="form-label">Last Name</label>
-    <input type="text" class="form-control" id="lname">
+    <input type="text" class="form-control w-50" id="lname">
      <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control" id="email">
+    <input type="email" class="form-control w-50" id="email">
     
   </div>
 
-   <div class="mb-3 flex-grow-1">
-    <label for="pwd" class="form-label">Password</label>
-    <input type="password" class="form-control" id="pwd">
+   <div class="mb-3 mr-1 w-50">
+      
+    <label for="pwd" class="form-label ">Password</label>
+    <input type="password" class="form-control w-50" id="pwd">
+    </div>
+     <div class="w-50">
      <label for="cfnpwd" class="form-label">Confirm Password</label>
-    <input type="password" class="form-control" id="cfnpwd">
-    
+    <input type="password" class="form-control w-50" id="cfnpwd">
+    </div>
+     <button type="submit" class="btn btn-primary">Submit</button>
   </div>
  
     
-  </div>
+  
 
     @*<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>*@
-  <button type="submit" class="btn btn-primary">Submit</button>
-  </div>
+ 
+ 
 </form>

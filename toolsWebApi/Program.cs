@@ -2,11 +2,9 @@ using toolsWebApi.IServices;
 using toolsWebApi.Services;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using NHibernate.Dialect;
 using toolsWebApi.Entity;
-using NHibernate;
 using System.Reflection;
-using NHibernate.Cfg;
+using toolsWebApi.IServices.hibernateConfig;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IloginService, LoginService>();
+
+builder.Services.AddScoped<IHibernateConfig, HibernateConfig>();
 
 var app = builder.Build();
 
@@ -33,7 +33,6 @@ var query = session.Get<Users>(2);
 sessionFactory.Dispose();
 
 Console.WriteLine($"NHibernate configured successfully!! users: {query}");
-Console.ReadLine();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
