@@ -12,6 +12,9 @@ namespace toolsWebApi.IServices.hibernateConfig
 
         void OpenSessionFactory();
 
+        void PersistData<ITenantEntity>(ITenantEntity entity);
+
+        void DeleteData<ITenantEntity>(ITenantEntity entity);
 
 
 

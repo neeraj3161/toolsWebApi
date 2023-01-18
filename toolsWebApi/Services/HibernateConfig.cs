@@ -22,6 +22,16 @@ namespace toolsWebApi.Services
             return result;
         }
 
+        public void PersistData<ITenantEntity>(ITenantEntity entity)
+        {
+            _session.Save(entity);
+        }
+
+
+        public void DeleteData<ITenantEntity>(ITenantEntity entity)
+        {
+            _session.Delete(entity);
+        }
         public void DisposeSession()
         { 
             _session.Dispose();

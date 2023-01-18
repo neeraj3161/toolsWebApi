@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Entity\Registration.hbm.xml" />
     <None Remove="Entity\Users.hbm.xml" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Entity\Registration.hbm.xml" />
     <EmbeddedResource Include="Entity\Users.hbm.xml" />
   </ItemGroup>
 

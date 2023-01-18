@@ -1,9 +1,7 @@
 ﻿* {
-    margin: 0;
-    padding: 0;
-    font-size: 100%;
+    margin:0;
+    padding:0;
 }
-
 :root {
     --darkBlue: #0c2742;
     --mainFont: #F9F9F9;
@@ -17,11 +15,15 @@ body {
     height: 100vh;
 }
 
+
 h1 {
-    color:var(--mainFont);
+    color: var(--mainFont);
 }
 
-.fa-g:hover {
-    color: #ff3068
+.input-mr {
+    margin-right:1%;
 }
 
+.input-ml {
+    margin-right: 1%;
+}

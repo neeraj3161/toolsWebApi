@@ -1,51 +1,87 @@
 ﻿@model UserModel
 @{
-    
+
 }
 
-   
+@inject IHttpContextAccessor context;
+
+
 <script src="https://kit.fontawesome.com/49cb7f7bd8.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
 
-@*<link rel="stylesheet" type="text/css" href="~/css/login.css" />*@
+<link rel="stylesheet" type="text/css" href="~/css/register.css" />
 <link rel="stylesheet" type="text/css" href="~/Scripts/toastr/toastr.css"/>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="~/Scripts/toastr/toastr.js"></script>
+
+
+
 <form>
-   <div class="d-flex flex-wrap gx-5">
-  <div class="mb-3 w-50">
-    <label for="fname" class="form-label">First Name</label>
-    <input type="text" class="form-control w-50" id="fname">
-    <label for="phone" class="form-label">Phone Number</label>
-    <input type="number" class="form-control w-50" id="fname"> 
-  </div>
+   <div class="d-flex justify-content-center ">
 
   <div class="mb-3 w-50">
-    <label for="lname" class="form-label">Last Name</label>
-    <input type="text" class="form-control w-50" id="lname">
-     <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control w-50" id="email">
-    
+      <h1 class="mb-4 pt-lg-5">Let's get started</h1>
+       <input type="email" class="form-control mb-3" id="emailId" data-bind="value:enteredEmailId" name="email" placeholder="Email id" required>
+       <p class="text-danger" data-bind="visible: isValidEmail">Please enter a valid email address</p>
+    <div class="d-flex">
+        <input type="text" data-bind="value:enteredFirstName" class="form-control mb-3 input-mr" id="fname" name="name" placeholder="First name" required>
+        <input type="text" class="form-control mb-3 input-ml" id="lname" name="surname" placeholder="Last name"> 
+    </div>
+   <div class=" d-flex">
+         <p class="text-danger flex-grow-1" data-bind="visible: isValidName" >Please enter a valid first name</p>
+         <p style="display:none;" class="text-danger flex-grow-1">Please enter a valid last name</p>
+   </div>
+
+
+    <div class="d-flex">
+        <input type="password" class="form-control mb-3 input-mr " data-bind="value:pwd, valueUpdate:'keyup'" placeholder="Password" id="pwd" required> 
+         <input type="password" class="form-control mb-3 input-ml" name="cpwd" placeholder="Confirm password" id="cpwd" required> 
+    </div>
+
+
+         <p class="text-danger" data-bind="visible: isValidPassword">Password must be atleast 8 alpha-numeric with one special (&&#64;,#,$..) characters</p>
+         <p class="text-danger" data-bind="visible: isTruePassword">Password doesn't match</p>
+
+
+    <div class="form-check mb-3 was-validated">
+        <input class="form-check-input" type="checkbox" id="my-check" name="remember" required />
+        <label class="form-check-label text-light" for="my-check">I agree on bla bla bla</label>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please agree with t&c to proceed.</div>
+    </div>
+
+    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal" id="sign-up-btn"  data-bind="click:signUpbtn">Sign up</button>
+    <a class="float-end text-info"  href="/Login/">Login here</a>
   </div>
 
-   <div class="mb-3 mr-1 w-50">
-      
-    <label for="pwd" class="form-label ">Password</label>
-    <input type="password" class="form-control w-50" id="pwd">
-    </div>
-     <div class="w-50">
-     <label for="cfnpwd" class="form-label">Confirm Password</label>
-    <input type="password" class="form-control w-50" id="cfnpwd">
-    </div>
-     <button type="submit" class="btn btn-primary">Submit</button>
-  </div>
- 
-    
-  
+  @*<h1>Otp: @context.HttpContext.Session.GetInt32("otp")</h1>*@
 
-    @*<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>*@
- 
- 
 </form>
+
+<div class="modal fade" id="exampleModal" role="dialog" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-keyboard="false"  data-bs-backdrop="static" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                    Otp sent on email 
+                </h5>
+               
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <div class="modal-body m-auto text-center">
+                    <input type="number" data-bind="value:enteredOtp" class="form-control mt-3 mb-2" placeholder="Enter otp"/>
+                    <a style="display:none;" href="#" class="text-blue">Resend otp</a>
+                    <p style="display:none;" class="text-danger">Please enter otp to continue</p>
+                </div>
+                 <div class="modal-footer m-auto">
+                <button type="button" data-bind = "enable:enteredOtp()>3, click:registerUser" class="btn btn-primary mb-3">Submit</button>
+                </div>
+        </div>
+    </div>
+</div>
+ <script src="~/lib/knockout/knockout.js"></script>
+
+ <script src="~/Scripts/login/login.js"></script>

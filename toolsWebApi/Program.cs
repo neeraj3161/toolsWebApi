@@ -5,6 +5,7 @@ using FluentNHibernate.Cfg.Db;
 using toolsWebApi.Entity;
 using System.Reflection;
 using toolsWebApi.IServices.hibernateConfig;
+using toolsWebApi.IServices.Email;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +15,22 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IloginService, LoginService>();
 
 builder.Services.AddScoped<IHibernateConfig, HibernateConfig>();
+builder.Services.AddScoped<IEmailConfig, EmailConfig>();
+
+builder.Services.AddScoped<IGenerateOtp, GenerateOtp>();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(1));
+
+builder.Services.AddMvc();
+
 
 var app = builder.Build();
+
+app.UseSession();
 
 var config = PostgreSQLConfiguration.PostgreSQL82.ConnectionString(builder.Configuration.GetConnectionString("DefaultConnection")).AdoNetBatchSize(100);
 

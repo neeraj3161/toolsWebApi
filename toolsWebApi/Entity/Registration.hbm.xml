@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+assembly="toolsWebApi" namespace="toolsWebApi.Entity" auto-import="false">
+	<class name="RegistrationEntity" table="users" schema="`scrape`">
+		<id column="id" name="Id">
+			<generator class="native">
+				<param name="sequence">id_seq</param>
+			</generator>
+		</id>
+
+
+	<property name="Name" column="name"/>
+	<property name="Surname" column="surname"/>
+	<property name="Email" column="email"/>
+	<property name="Password" column="password"/>
+	</class>
+</hibernate-mapping>
