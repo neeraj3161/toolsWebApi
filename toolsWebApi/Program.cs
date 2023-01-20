@@ -23,9 +23,12 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddDistributedMemoryCache();
 
-builder.Services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(1));
+
+builder.Services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(5));
 
 builder.Services.AddMvc();
+
+builder.Services.AddDataProtection();
 
 
 var app = builder.Build();
@@ -38,7 +41,6 @@ var nhConfig = Fluently.Configure().Database(config).BuildConfiguration();
 
 var sessionFactory = nhConfig.AddAssembly(Assembly.GetExecutingAssembly()).BuildSessionFactory();
 
-Console.WriteLine();
 
 var session = sessionFactory.OpenSession();
 

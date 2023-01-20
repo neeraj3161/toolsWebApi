@@ -3,6 +3,8 @@ var loginError = $("#password-validation");
 
 var signUpButton = $("#sign-up-btn");
 
+var myModal = "";
+
 var registrationModal;
 
 function userDataModel(userData) {
@@ -28,7 +30,7 @@ signInButton.click(function () {
 //}
 
 
-signUpButton.click(function () {
+//signUpButton.click(function () {
 
     //var formData = $('form').serializeArray();
     //console.log("sign up clicked");
@@ -43,7 +45,7 @@ signUpButton.click(function () {
     //RegisterUser(Model);
 
     
-});
+//});
 
 function loginUser(formData) {
     $.ajax({
@@ -98,12 +100,21 @@ function RegisterUser(ResgitrationModel,enteredotp)
         beforeSend: function () { },
         success: function (result) {
             if (result.success) {
-                    toastr.success('Registration Successfull', 'Success', {
-                        positionClass: 'toast-top-left'
+                toastr.success('Registration Successfull', 'Success', {
+                    positionClass: 'toast-top-left'
 
-                    });
+                });
 
-                }
+            } else if (!result.otp) {
+                vm.incorrectOtpTxt("Incorrect otp");
+            } else if (result.alreadyExists)
+            {
+                myModal.hide();
+                toastr.error('User already exists try loggin in', 'Error', {
+                    positionClass: 'toast-top-left'
+
+                });
+            }
 
            
         },
@@ -141,6 +152,7 @@ function SendOtp(ResgitrationModel) {
 function viewModel() 
 {
     this.pwd = ko.observable(""),
+    this.cnfPwd = ko.observable(""),
     this.isValidName = ko.observable(false),
     this.pwd.subscribe(function (newValue) {
         //alert(newValue);
@@ -151,10 +163,13 @@ function viewModel()
 
     this.enteredEmailId = ko.observable("");
     this.enteredFirstName = ko.observable("");
+    this.incorrectOtpTxt = ko.observable("");
+   
 
     this.enteredOtp = ko.observable();
     signUpbtn = function ()
     {
+        
             var formData = $('form').serializeArray();
     
             var Model = {
@@ -166,14 +181,24 @@ function viewModel()
 
         registrationModal = Model;
 
-        SendOtp(Model);
+        if (this.validateEmail() &&
+            this.validateFirstName() && this.isValidPwd() && this.pwdMatch()) 
+        {
+            myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+
+            SendOtp(Model); 
+            
+            myModal.show();
+           
+        }
+
+       
 
 
         //console.log((this.enteredEmailId()));
         //console.log(this.enteredEmailId().includes("@"));
         //this.isValidEmail(false);
-        //this.validateEmail();
-        //this.validateFirstName();
+        
 
 
     }
@@ -194,19 +219,48 @@ function viewModel()
             this.isValidEmail(true);
             return false;
         }
+        this.isValidEmail(false);
         return true;
     }
 
     this.validateFirstName = function ()
     {
-        const reg = new RegExp('^[0-9]+$');
-        //if (this.enteredFirstName().includes(reg))
-        //{
-        //    this.isValidName(true);
-        //    return false;
-        //}
+        //const reg = new RegExp('^[0-9]+$');
+        if (this.enteredFirstName().length==0)
+        {
+            this.isValidName(true);
+           return false;
+        }
+        this.isValidName(false);
         return true;
     }
+
+    //var specialChar = ["@", "$", "#", "!", "^", "&", "*", "/", "\\"];
+
+    //var value = new RegExp(specialChar.join('|')).test(this.pwd());
+
+
+    this.isValidPwd = function () {
+        if (this.pwd().length < 8 )
+        {
+            this.isValidPassword(true);
+            return false;
+        }
+        this.isValidPassword(false);
+        return true;
+    }
+
+    this.pwdMatch = function ()
+    {
+        if (this.pwd() != this.cnfPwd()) {
+            this.isTruePassword(true);
+            return false;
+        }
+        this.isTruePassword(false);
+        return true;
+    }
+
+
 }
 
 var vm = new viewModel();

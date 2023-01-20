@@ -37,7 +37,7 @@
 
     <div class="d-flex">
         <input type="password" class="form-control mb-3 input-mr " data-bind="value:pwd, valueUpdate:'keyup'" placeholder="Password" id="pwd" required> 
-         <input type="password" class="form-control mb-3 input-ml" name="cpwd" placeholder="Confirm password" id="cpwd" required> 
+         <input type="password" class="form-control mb-3 input-ml" data-bind="value:cnfPwd, valueUpdate:'keyup'" name="cpwd" placeholder="Confirm password" id="cpwd" required> 
     </div>
 
 
@@ -52,7 +52,8 @@
                 <div class="invalid-feedback">Please agree with t&c to proceed.</div>
     </div>
 
-    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal" id="sign-up-btn"  data-bind="click:signUpbtn">Sign up</button>
+    @*data-bs-toggle="modal" data-bs-target="#exampleModal"*@
+    <button type="button" class="btn btn-outline-success"  id="sign-up-btn" data-bind="click:signUpbtn">Sign up</button>
     <a class="float-end text-info"  href="/Login/">Login here</a>
   </div>
 
@@ -75,6 +76,7 @@
                     <input type="number" data-bind="value:enteredOtp" class="form-control mt-3 mb-2" placeholder="Enter otp"/>
                     <a style="display:none;" href="#" class="text-blue">Resend otp</a>
                     <p style="display:none;" class="text-danger">Please enter otp to continue</p>
+                    <p class="text-danger" data-bind="text:incorrectOtpTxt"></p>
                 </div>
                  <div class="modal-footer m-auto">
                 <button type="button" data-bind = "enable:enteredOtp()>3, click:registerUser" class="btn btn-primary mb-3">Submit</button>
