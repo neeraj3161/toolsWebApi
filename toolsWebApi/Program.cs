@@ -38,8 +38,7 @@ var nhConfig = Fluently.Configure().Database(config).BuildConfiguration();
 
 var sessionFactory = nhConfig.AddAssembly(Assembly.GetExecutingAssembly()).BuildSessionFactory();
 
-
-//ISessionFactory sessions = new Configuration().Configure().AddAssembly(Assembly.GetExecutingAssembly()).BuildSessionFactory();
+Console.WriteLine();
 
 var session = sessionFactory.OpenSession();
 

@@ -28,6 +28,10 @@ namespace toolsWebApi.Controllers
 
         public IActionResult Index()
         {
+            int otp = _otp.GenerateOtp(6);
+            HttpContext.Session.SetInt32("otp", otp);
+            string template = _emailConfig.OtpTemplate(otp);
+            _emailConfig.SendOtpVerificationEmail("neerajtripathi7447@gmail.com", "Welcome to toolsWebApi", template);
             return View();
         }
 
@@ -35,19 +39,7 @@ namespace toolsWebApi.Controllers
         public JsonResult login(string emailId, string pwd)
         {
             var isValidUser = false;
-            //generate random number
-
            
-            //_repository.OpenSessionFactory();
-
-
-            //get specific user
-            //var userData=_repository.Read<Users>(1);
-
-            ////get all users
-            //var userDataQuery = _repository.Query<Users>();
-
-            //_repository.DisposeSession();
             if (emailId != null && pwd != null)
             {
                 isValidUser = _loginService.UserLogin(emailId, pwd);
